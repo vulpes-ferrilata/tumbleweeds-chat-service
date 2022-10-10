@@ -1,0 +1,17 @@
+[
+    {
+        "locale": "vi",
+        "key": "command-validation-error",
+        "trans": "mệnh lệnh chứa các tham số không hợp lệ, có thể tìm thấy thêm thông tin trong trường thông tin errors"
+    },
+    {
+        "locale": "vi",
+        "key": "not-found-error",
+        "trans": "không tìm thấy {0}"
+    },
+    {
+        "locale": "vi",
+        "key": "stale-object-error",
+        "trans": "đã cố gắng cập nhật hoặc xóa {0} cũ"
+    }
+]

@@ -1,0 +1,17 @@
+[
+    {
+        "locale": "en",
+        "key": "command-validation-error",
+        "trans": "the command contains invalid parameters, more information can be found in the errors"
+    },
+    {
+        "locale": "en",
+        "key": "not-found-error",
+        "trans": "{0} not found"
+    },
+    {
+        "locale": "en",
+        "key": "stale-object-error",
+        "trans": "attempted to update or delete a stale {0}"
+    }
+]
