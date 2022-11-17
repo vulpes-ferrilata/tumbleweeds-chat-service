@@ -13,7 +13,7 @@ import (
 
 func NewMessageRepository(scyllaSession gocqlx.Session) repositories.MessageRepository {
 	messageMetadata := table.Metadata{
-		Name:    "message",
+		Name:    "messages",
 		Columns: []string{"id", "room_id", "user_id", "detail"},
 		PartKey: []string{"room_id"},
 		SortKey: []string{"id"},
@@ -33,7 +33,10 @@ type messageRepository struct {
 }
 
 func (m messageRepository) Insert(ctx context.Context, message *models.Message) error {
-	messageEntity := mappers.ToMessageEntity(message)
+	messageEntity, err := mappers.MessageMapper.ToEntity(message)
+	if err != nil {
+		return errors.WithStack(err)
+	}
 
 	if err := m.messageTable.InsertQueryContext(ctx, m.scyllaSession).BindStruct(messageEntity).ExecRelease(); err != nil {
 		return errors.WithStack(err)

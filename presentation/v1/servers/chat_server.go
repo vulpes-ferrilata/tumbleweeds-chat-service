@@ -42,7 +42,7 @@ func (c chatServer) FindMessagesByRoomID(ctx context.Context, findMessagesByRoom
 	}
 
 	messageResponses, err := slices.Map(func(message *models.Message) (*responses.Message, error) {
-		return mappers.ToMessageResponse(message), nil
+		return mappers.MessageMapper.ToResponse(message)
 	}, messages)
 	if err != nil {
 		return nil, errors.WithStack(err)

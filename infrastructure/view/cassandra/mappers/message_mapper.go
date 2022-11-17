@@ -5,17 +5,19 @@ import (
 	"github.com/vulpes-ferrilata/chat-service/view/models"
 )
 
-func ToMessageView(messageEntity *entities.Message) *models.Message {
+var MessageMapper messageMapper = messageMapper{}
+
+type messageMapper struct{}
+
+func (m messageMapper) ToView(messageEntity *entities.Message) (*models.Message, error) {
 	if messageEntity == nil {
-		return nil
+		return nil, nil
 	}
 
-	message := &models.Message{
+	return &models.Message{
 		ID:     messageEntity.ID,
 		RoomID: messageEntity.RoomID.ObjectID,
 		UserID: messageEntity.UserID.ObjectID,
 		Detail: messageEntity.Detail,
-	}
-
-	return message
+	}, nil
 }

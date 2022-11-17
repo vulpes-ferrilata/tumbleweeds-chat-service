@@ -17,7 +17,7 @@ import (
 
 func NewMessageProjector(scyllaSession gocqlx.Session) projectors.MessageProjector {
 	messageMetadata := table.Metadata{
-		Name:    "message",
+		Name:    "messages",
 		Columns: []string{"id", "room_id", "user_id", "detail"},
 		PartKey: []string{"room_id"},
 		SortKey: []string{"id"},
@@ -44,7 +44,7 @@ func (m messageProjector) FindByRoomID(ctx context.Context, roomID primitive.Obj
 	}
 
 	messages, err := slices.Map(func(messageEntity *entities.Message) (*models.Message, error) {
-		return mappers.ToMessageView(messageEntity), nil
+		return mappers.MessageMapper.ToView(messageEntity)
 	}, messageEntities)
 	if err != nil {
 		return nil, errors.WithStack(err)
