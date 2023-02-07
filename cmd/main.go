@@ -4,8 +4,8 @@ import (
 	"net"
 
 	"github.com/pkg/errors"
+	"github.com/vulpes-ferrilata/chat-service/config"
 	"github.com/vulpes-ferrilata/chat-service/infrastructure"
-	"github.com/vulpes-ferrilata/chat-service/infrastructure/config"
 	"google.golang.org/grpc"
 )
 
