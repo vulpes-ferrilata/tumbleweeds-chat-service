@@ -235,6 +235,8 @@ github.com/vulpes-ferrilata/cqrs v1.0.0 h1:PctUJNeGINMz/hQaZdwJ1Fx5tXhDV1GExbKOf
 github.com/vulpes-ferrilata/cqrs v1.0.0/go.mod h1:cjRMmJN53bZRKoiY5DoZfYxhUllP68ZXQEuksa5Pt6I=
 github.com/vulpes-ferrilata/custom-validator v1.0.0 h1:db0yfRl7hRj6fP5R6GdTFa5aS6OLtnr2VAMe8oLOBys=
 github.com/vulpes-ferrilata/custom-validator v1.0.0/go.mod h1:YOhjgMTxJmh+rt+Cty3DWxOLtPKYsy6iJneDtBEcyAU=
+github.com/vulpes-ferrilata/slices v1.0.0 h1:WKHs2Lv6rrWpTmeuFQBZeZ5qpGM9MKvOXxpF0VLz72k=
+github.com/vulpes-ferrilata/slices v1.0.0/go.mod h1:im9cb/fJEdNSgVgat8pOHo2vzJVdTFxUJ6Ir+obehV4=
 github.com/xdg-go/pbkdf2 v1.0.0 h1:Su7DPu48wXMwC3bs7MCNG+z4FhcyEuz5dlvchbq0B0c=
 github.com/xdg-go/pbkdf2 v1.0.0/go.mod h1:jrpuAogTd400dnrH08LKmI/xc1MbPOebTwRqcT5RDeI=
 github.com/xdg-go/scram v1.1.1 h1:VOMT+81stJgXW3CpHyqHN3AXDYIMsx56mEFrB37Mb/E=

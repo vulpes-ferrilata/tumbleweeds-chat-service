@@ -8,10 +8,10 @@ import (
 	pb_models "github.com/vulpes-ferrilata/chat-service-proto/pb/models"
 	"github.com/vulpes-ferrilata/chat-service/application/commands"
 	"github.com/vulpes-ferrilata/chat-service/application/queries"
-	"github.com/vulpes-ferrilata/chat-service/infrastructure/utils/slices"
 	"github.com/vulpes-ferrilata/chat-service/presentation/v1/mappers"
 	"github.com/vulpes-ferrilata/chat-service/view/models"
 	"github.com/vulpes-ferrilata/cqrs"
+	"github.com/vulpes-ferrilata/slices"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
@@ -41,7 +41,7 @@ func (c chatServer) FindMessagesByRoomID(ctx context.Context, findMessagesByRoom
 
 	messageResponses, err := slices.Map(func(message *models.Message) (*pb_models.Message, error) {
 		return mappers.MessageMapper.ToResponse(message)
-	}, messages)
+	}, messages...)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}

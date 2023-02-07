@@ -11,7 +11,7 @@ import (
 	"github.com/vulpes-ferrilata/chat-service/infrastructure/domain/cassandra/mappers"
 )
 
-func NewMessageRepository(scyllaSession gocqlx.Session) repositories.MessageRepository {
+func NewMessageRepository(cassandraSession gocqlx.Session) repositories.MessageRepository {
 	messageMetadata := table.Metadata{
 		Name:    "messages",
 		Columns: []string{"id", "room_id", "user_id", "detail"},
@@ -22,14 +22,14 @@ func NewMessageRepository(scyllaSession gocqlx.Session) repositories.MessageRepo
 	messageTable := table.New(messageMetadata)
 
 	return &messageRepository{
-		scyllaSession: scyllaSession,
-		messageTable:  messageTable,
+		cassandraSession: cassandraSession,
+		messageTable:     messageTable,
 	}
 }
 
 type messageRepository struct {
-	scyllaSession gocqlx.Session
-	messageTable  *table.Table
+	cassandraSession gocqlx.Session
+	messageTable     *table.Table
 }
 
 func (m messageRepository) Insert(ctx context.Context, message *models.Message) error {
@@ -38,7 +38,7 @@ func (m messageRepository) Insert(ctx context.Context, message *models.Message) 
 		return errors.WithStack(err)
 	}
 
-	if err := m.messageTable.InsertQueryContext(ctx, m.scyllaSession).BindStruct(messageEntity).ExecRelease(); err != nil {
+	if err := m.messageTable.InsertQueryContext(ctx, m.cassandraSession).BindStruct(messageEntity).ExecRelease(); err != nil {
 		return errors.WithStack(err)
 	}
 

@@ -16,6 +16,7 @@ require (
 	github.com/vulpes-ferrilata/chat-service-proto v1.0.0
 	github.com/vulpes-ferrilata/cqrs v1.0.0
 	github.com/vulpes-ferrilata/custom-validator v1.0.0
+	github.com/vulpes-ferrilata/slices v1.0.0
 	go.mongodb.org/mongo-driver v1.11.1
 	go.uber.org/dig v1.15.0
 	google.golang.org/genproto v0.0.0-20220927151529-dcaddaf36704
