@@ -1,13 +1,14 @@
 package infrastructure
 
 import (
-	command_handlers "github.com/vulpes-ferrilata/chat-service/application/commands/handlers"
-	query_handlers "github.com/vulpes-ferrilata/chat-service/application/queries/handlers"
+	"github.com/vulpes-ferrilata/chat-service/application/commands"
+	"github.com/vulpes-ferrilata/chat-service/application/queries"
+	"github.com/vulpes-ferrilata/chat-service/infrastructure/cqrs/middlewares"
 	"github.com/vulpes-ferrilata/chat-service/infrastructure/domain/cassandra/repositories"
-	"github.com/vulpes-ferrilata/chat-service/infrastructure/grpc"
 	"github.com/vulpes-ferrilata/chat-service/infrastructure/grpc/interceptors"
 	"github.com/vulpes-ferrilata/chat-service/infrastructure/view/cassandra/projectors"
-	"github.com/vulpes-ferrilata/chat-service/presentation/v1/servers"
+	"github.com/vulpes-ferrilata/chat-service/presentation"
+	v1 "github.com/vulpes-ferrilata/chat-service/presentation/v1"
 	"go.uber.org/dig"
 )
 
@@ -20,11 +21,12 @@ func NewContainer() *dig.Container {
 	container.Provide(NewValidator)
 	container.Provide(NewLogrus)
 	container.Provide(NewUniversalTranslator)
-	container.Provide(grpc.NewServer)
 	//--Grpc interceptors
 	container.Provide(interceptors.NewRecoverInterceptor)
 	container.Provide(interceptors.NewErrorHandlerInterceptor)
 	container.Provide(interceptors.NewLocaleInterceptor)
+	//--Cqrs middlewares
+	container.Provide(middlewares.NewValidationMiddleware)
 
 	//Domain layer
 	//--Repositories
@@ -36,12 +38,13 @@ func NewContainer() *dig.Container {
 
 	//Application layer
 	//--Queries
-	container.Provide(query_handlers.NewFindMessagesByRoomIDHandler)
+	container.Provide(queries.NewFindMessagesByRoomIDHandler)
 	//--Commands
-	container.Provide(command_handlers.NewCreateMessageCommandHandler)
+	container.Provide(commands.NewCreateMessageCommandHandler)
 
 	//Presentation layer
-	container.Provide(servers.NewChatServer)
+	container.Provide(presentation.NewServer)
+	container.Provide(v1.NewChatServer)
 
 	return container
 }

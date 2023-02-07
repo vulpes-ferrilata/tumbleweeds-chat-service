@@ -3,7 +3,7 @@ package infrastructure
 import (
 	"github.com/gocql/gocql"
 	"github.com/scylladb/gocqlx/v2"
-	"github.com/vulpes-ferrilata/chat-service/infrastructure/config"
+	"github.com/vulpes-ferrilata/chat-service/config"
 )
 
 func NewCassandra(config config.Config) (gocqlx.Session, error) {
